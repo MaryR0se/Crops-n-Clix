@@ -6,8 +6,8 @@ pygame.font.init()
 #caption
 pygame.display.set_caption("Prototype 0!")
 #window
-WIDTH = 825
-HEIGHT = WIDTH / 1.61803398875 #thought a golden(-ish) rectangle would be cute here
+WIDTH = 1200 #825
+HEIGHT = 800 #WIDTH / 1.61803398875 #thought a golden(-ish) rectangle would be cute here
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 #primary colors
 DARK_BROWN = ( 71,  43,  30)
@@ -32,12 +32,16 @@ CHICKEN_PEN_IMG = pygame.image.load(os.path.join("Assets", "chickens.png"))
 CHICKEN_PEN = pygame.transform.scale(CHICKEN_PEN_IMG, PEN_SIZE)
 GOAT_PEN_IMG = pygame.image.load(os.path.join("Assets", "goats.png"))
 GOAT_PEN = pygame.transform.scale(GOAT_PEN_IMG, PEN_SIZE)
+PIG_PEN_IMG = pygame.image.load(os.path.join("Assets", "pigs.png"))
+PIG_PEN = pygame.transform.scale(PIG_PEN_IMG, PEN_SIZE)
 #animal sprites
 ANIMAL_SIZE = (50, 50)
 CHICKEN_IMG = pygame.image.load(os.path.join("Assets", "chicken.png"))
 CHICKEN = pygame.transform.scale(CHICKEN_IMG, ANIMAL_SIZE)
 GOAT_IMG = pygame.image.load(os.path.join("Assets", "goat.png"))
 GOAT = pygame.transform.scale(GOAT_IMG, ANIMAL_SIZE)
+PIG_IMG = pygame.image.load(os.path.join("Assets", "pig.png"))
+PIG = pygame.transform.scale(PIG_IMG, ANIMAL_SIZE)
 
 
 
@@ -57,7 +61,7 @@ def draw_window(current_animal):
 
     pygame.display.update()
 
-def create_animals(num_chickens=5, num_goats=30):
+def create_animals(num_chickens=0, num_goats=0, num_pigs=0):
     #animal class
     class Animal:
         def __init__(self, name, pen_sprite, animal_sprite, num_animals):
@@ -83,10 +87,12 @@ def create_animals(num_chickens=5, num_goats=30):
 
     chickens = Animal("chickens", CHICKEN_PEN, CHICKEN, num_chickens)
     goats = Animal("goats", GOAT_PEN, GOAT, num_goats)
+    pigs = Animal("pigs", PIG_PEN, PIG, num_pigs)
 
     all_animals = [
         chickens,
-        goats
+        goats,
+        pigs
     ]
     return all_animals
 
@@ -110,10 +116,14 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT: #later change to a click of an arrow icon on screen
                     current_animal_index = (current_animal_index + 1) % len(all_animals)
-                    print(current_animal.name)
+                    #print(current_animal.name)
                 if event.key == pygame.K_LEFT: #later change to a click of an arrow icon on screen
                     current_animal_index = (current_animal_index - 1) % len(all_animals)
-                    print(current_animal.name)
+                    #print(current_animal.name)
+            if event.type == pygame.MOUSEBUTTONUP:
+                if SHOP.collidepoint(SHOP.x, SHOP.y):
+                    all_animals[0].add_animal()
+                    #print(all_animals[0].num_animals)
         
 
 
