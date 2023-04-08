@@ -4,7 +4,7 @@ import random
 pygame.font.init()
 
 #caption
-pygame.display.set_caption("Prototype 0!")
+pygame.display.set_caption("Prototype 1-Mary!")
 #window
 WIDTH = 1200 #825
 HEIGHT = 800 #WIDTH / 1.61803398875 #thought a golden(-ish) rectangle would be cute here
@@ -35,7 +35,7 @@ GOAT_PEN = pygame.transform.scale(GOAT_PEN_IMG, PEN_SIZE)
 PIG_PEN_IMG = pygame.image.load(os.path.join("Assets", "pigs.png"))
 PIG_PEN = pygame.transform.scale(PIG_PEN_IMG, PEN_SIZE)
 #animal sprites
-ANIMAL_SIZE = (50, 50)
+ANIMAL_SIZE = (100, 100)
 CHICKEN_IMG = pygame.image.load(os.path.join("Assets", "chicken.png"))
 CHICKEN = pygame.transform.scale(CHICKEN_IMG, ANIMAL_SIZE)
 GOAT_IMG = pygame.image.load(os.path.join("Assets", "goat.png"))
@@ -74,7 +74,8 @@ def create_animals(num_chickens=0, num_goats=0, num_pigs=0):
         def shuffle(self):
             rects = []
             for i in range(self.num_animals):
-                rects.append(pygame.Rect(random.randint(ANIMALS.x + 20, ANIMALS.x + ANIMALS.width - 20 - 50), random.randint(ANIMALS.y + 20, ANIMALS.y + ANIMALS.height - 20 - 50), 50, 50))
+                rects.append(pygame.Rect(random.randint(ANIMALS.x + 20, ANIMALS.x + ANIMALS.width - 20 - ANIMAL_SIZE[0]), random.randint(ANIMALS.y + 20, ANIMALS.y + ANIMALS.height - 20 - ANIMAL_SIZE[1]), 50, 50))
+            rects = self.sort(rects)
             return rects
 
         def add_animal(self):
@@ -84,6 +85,14 @@ def create_animals(num_chickens=0, num_goats=0, num_pigs=0):
         def sub_animal(self):
             self.num_animals -= 1
             self.rectangles = self.shuffle()
+
+        def sort(self, rects):
+            for i in range(1, len(rects)):
+                j = i
+                while j > 0 and rects[j-1].y > rects[j].y:
+                    rects[j], rects[j - 1] = rects[j - 1], rects[j]
+                    j -= 1
+            return rects
 
     chickens = Animal("chickens", CHICKEN_PEN, CHICKEN, num_chickens)
     goats = Animal("goats", GOAT_PEN, GOAT, num_goats)
@@ -122,7 +131,7 @@ def main():
                     #print(current_animal.name)
             if event.type == pygame.MOUSEBUTTONUP:
                 if SHOP.collidepoint(SHOP.x, SHOP.y):
-                    all_animals[0].add_animal()
+                    current_animal.add_animal()
                     #print(all_animals[0].num_animals)
         
 
