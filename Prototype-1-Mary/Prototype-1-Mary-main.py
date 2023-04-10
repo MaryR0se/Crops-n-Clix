@@ -30,18 +30,56 @@ SHOP = pygame.Rect(HEIGHT + 10, HEIGHT / 3 * 2 + 10, WIDTH - HEIGHT - 20, HEIGHT
 PEN_SIZE = (HEIGHT - 60, HEIGHT / 2 - 60)
 CHICKEN_PEN_IMG = pygame.image.load(os.path.join("Assets", "chickens.png"))
 CHICKEN_PEN = pygame.transform.scale(CHICKEN_PEN_IMG, PEN_SIZE)
+GOOSE_PEN_IMG = pygame.image.load(os.path.join("Assets", "geese.png"))
+GOOSE_PEN = pygame.transform.scale(GOOSE_PEN_IMG, PEN_SIZE)
 GOAT_PEN_IMG = pygame.image.load(os.path.join("Assets", "goats.png"))
 GOAT_PEN = pygame.transform.scale(GOAT_PEN_IMG, PEN_SIZE)
 PIG_PEN_IMG = pygame.image.load(os.path.join("Assets", "pigs.png"))
 PIG_PEN = pygame.transform.scale(PIG_PEN_IMG, PEN_SIZE)
+SHEEP_PEN_IMG = pygame.image.load(os.path.join("Assets", "sheeps.png"))
+SHEEP_PEN = pygame.transform.scale(SHEEP_PEN_IMG, PEN_SIZE)
 #animal sprites
 ANIMAL_SIZE = (100, 100)
-CHICKEN_IMG = pygame.image.load(os.path.join("Assets", "chicken.png"))
-CHICKEN = pygame.transform.scale(CHICKEN_IMG, ANIMAL_SIZE)
-GOAT_IMG = pygame.image.load(os.path.join("Assets", "goat.png"))
-GOAT = pygame.transform.scale(GOAT_IMG, ANIMAL_SIZE)
-PIG_IMG = pygame.image.load(os.path.join("Assets", "pig.png"))
-PIG = pygame.transform.scale(PIG_IMG, ANIMAL_SIZE)
+CHICKEN_IMG = [
+    pygame.image.load(os.path.join("Assets", "chicken0.png")),
+    pygame.image.load(os.path.join("Assets", "chicken1.png"))
+]
+CHICKEN = [
+    pygame.transform.scale(CHICKEN_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(CHICKEN_IMG[1], ANIMAL_SIZE)
+]
+GOOSE_IMG = [
+    pygame.image.load(os.path.join("Assets", "goose0.png")),
+    pygame.image.load(os.path.join("Assets", "goose1.png"))
+]
+GOOSE = [
+    pygame.transform.scale(GOOSE_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(GOOSE_IMG[1], ANIMAL_SIZE)
+]
+GOAT_IMG = [
+    pygame.image.load(os.path.join("Assets", "goat0.png")),
+    pygame.image.load(os.path.join("Assets", "goat1.png"))
+]
+GOAT = [
+    pygame.transform.scale(GOAT_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(GOAT_IMG[1], ANIMAL_SIZE)
+]
+PIG_IMG = [
+    pygame.image.load(os.path.join("Assets", "pig0.png")),
+    pygame.image.load(os.path.join("Assets", "pig1.png"))
+]
+PIG = [
+    pygame.transform.scale(PIG_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(PIG_IMG[1], ANIMAL_SIZE)
+]
+SHEEP_IMG = [
+    pygame.image.load(os.path.join("Assets", "sheep0.png")),
+    pygame.image.load(os.path.join("Assets", "sheep1.png"))
+]
+SHEEP = [
+    pygame.transform.scale(SHEEP_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(SHEEP_IMG[1], ANIMAL_SIZE)
+]
 
 
 
@@ -56,12 +94,12 @@ def draw_window(current_animal):
 
     WIN.blit(current_animal.pen_sprite, (ANIMALS.x + 20, ANIMALS.y + 20))
     for rect in current_animal.rectangles:
-        WIN.blit(current_animal.animal_sprite, (rect.x, rect.y))
+        WIN.blit(rect[1], (rect[0].x, rect[0].y))
 
 
     pygame.display.update()
 
-def create_animals(num_chickens=0, num_goats=0, num_pigs=0):
+def create_animals(num_chickens=0, num_geese=0, num_goats=0, num_pigs=0, num_sheep=0):
     #animal class
     class Animal:
         def __init__(self, name, pen_sprite, animal_sprite, num_animals):
@@ -74,7 +112,7 @@ def create_animals(num_chickens=0, num_goats=0, num_pigs=0):
         def shuffle(self):
             rects = []
             for i in range(self.num_animals):
-                rects.append(pygame.Rect(random.randint(ANIMALS.x + 20, ANIMALS.x + ANIMALS.width - 20 - ANIMAL_SIZE[0]), random.randint(ANIMALS.y + 20, ANIMALS.y + ANIMALS.height - 20 - ANIMAL_SIZE[1]), 50, 50))
+                rects.append((pygame.Rect(random.randint(ANIMALS.x + 20, ANIMALS.x + ANIMALS.width - 20 - ANIMAL_SIZE[0]), random.randint(ANIMALS.y + 20, ANIMALS.y + ANIMALS.height - 20 - ANIMAL_SIZE[1]), 50, 50), random.choice(self.animal_sprite)))
             rects = self.sort(rects)
             return rects
 
@@ -89,19 +127,23 @@ def create_animals(num_chickens=0, num_goats=0, num_pigs=0):
         def sort(self, rects):
             for i in range(1, len(rects)):
                 j = i
-                while j > 0 and rects[j-1].y > rects[j].y:
+                while j > 0 and rects[j-1][0].y > rects[j][0].y:
                     rects[j], rects[j - 1] = rects[j - 1], rects[j]
                     j -= 1
             return rects
 
     chickens = Animal("chickens", CHICKEN_PEN, CHICKEN, num_chickens)
+    geese = Animal("chickens", GOOSE_PEN, GOOSE, num_geese)
     goats = Animal("goats", GOAT_PEN, GOAT, num_goats)
     pigs = Animal("pigs", PIG_PEN, PIG, num_pigs)
+    sheep = Animal("sheep", SHEEP_PEN, SHEEP, num_sheep)
 
     all_animals = [
         chickens,
+        geese,
         goats,
-        pigs
+        pigs,
+        sheep
     ]
     return all_animals
 
