@@ -277,16 +277,20 @@ class game:
         for self.event in pygame.event.get():
             if self.event.type == pygame.KEYDOWN:
                     if self.event.key == pygame.K_RIGHT: #later change to a click of an arrow icon on screen
-                        current_animal_index = (current_animal_index + 1) % len(all_animals)
+                        current_animal_index = (current_animal_index + 1) #% len(all_animals)
+                        current_animal = all_animals[current_animal_index]
+                        self.draw_window(current_animal)
                         print(current_animal.name)
                     if self.event.key == pygame.K_LEFT: #later change to a click of an arrow icon on screen
-                        current_animal_index = (current_animal_index - 1) % len(all_animals)
+                        current_animal_index = (current_animal_index - 1) #% len(all_animals)
+                        current_animal = all_animals[current_animal_index]
+                        self.draw_window(current_animal)
                         print(current_animal.name)
             if self.event.type == pygame.MOUSEBUTTONUP:
-                #if pygame.Rect(740, 340, 30, 440).collidepoint(self.mouse_pos):
-                all_animals[current_animal_index].num_animals += 1
-                all_animals[current_animal_index].rectangles = all_animals[current_animal_index].shuffle()
-                print(all_animals[current_animal_index].num_animals)
+                if pygame.Rect(ANIMALS.x + 20, ANIMALS.y + 22.5, HEIGHT - 60, HEIGHT / 2 - 60).collidepoint(self.mouse_pos):
+                    all_animals[current_animal_index].num_animals += 1
+                    all_animals[current_animal_index].rectangles = all_animals[current_animal_index].shuffle()
+                #print(all_animals[current_animal_index].num_animals)
 
     def render(self, current_animal_index):
         all_animals = self.create_animals()
