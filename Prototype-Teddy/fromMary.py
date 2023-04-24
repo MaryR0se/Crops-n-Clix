@@ -256,7 +256,7 @@ class game:
         ]
         '''''''''
         chickens = Animal("chickens", CHICKEN_PEN, CHICKEN, num_chickens)
-        geese = Animal("chickens", GOOSE_PEN, GOOSE, num_geese)
+        geese = Animal("geese", GOOSE_PEN, GOOSE, num_geese)
         goats = Animal("goats", GOAT_PEN, GOAT, num_goats)
         pigs = Animal("pigs", PIG_PEN, PIG, num_pigs)
         sheep = Animal("sheep", SHEEP_PEN, SHEEP, num_sheep)
@@ -278,15 +278,21 @@ class game:
             if self.event.type == pygame.KEYDOWN:
                     if self.event.key == pygame.K_RIGHT: #later change to a click of an arrow icon on screen
                         current_animal_index = (current_animal_index + 1) % len(all_animals)
+                        current_animal = all_animals[current_animal_index]
+                        self.draw_window(current_animal)
                         print(current_animal.name)
+                        print(current_animal_index)
                     if self.event.key == pygame.K_LEFT: #later change to a click of an arrow icon on screen
                         current_animal_index = (current_animal_index - 1) % len(all_animals)
+                        current_animal = all_animals[current_animal_index]
+                        self.draw_window(current_animal)
                         print(current_animal.name)
+                        print(current_animal_index)
             if self.event.type == pygame.MOUSEBUTTONUP:
-                #if pygame.Rect(740, 340, 30, 440).collidepoint(self.mouse_pos):
-                all_animals[current_animal_index].num_animals += 1
-                all_animals[current_animal_index].rectangles = all_animals[current_animal_index].shuffle()
-                print(all_animals[current_animal_index].num_animals)
+                if pygame.Rect(ANIMALS.x + 20, ANIMALS.y + 22.5, HEIGHT - 60, HEIGHT / 2 - 60).collidepoint(self.mouse_pos):
+                    all_animals[current_animal_index].num_animals += 1
+                    all_animals[current_animal_index].rectangles = all_animals[current_animal_index].shuffle()
+                #print(all_animals[current_animal_index].num_animals)
 
     def render(self, current_animal_index):
         all_animals = self.create_animals()
@@ -299,7 +305,7 @@ class game:
 #Initialize Pygame
 pygame.init()
 
-current_animal_index = 0
+#current_animal_index = 0
 def main():
     clock = pygame.time.Clock()
     run = True
