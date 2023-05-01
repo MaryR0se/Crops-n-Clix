@@ -46,12 +46,11 @@ BEAR_PEN_IMG = pygame.image.load(os.path.join("Assets", "bears.png"))
 BEAR_PEN = pygame.transform.scale(BEAR_PEN_IMG, PEN_SIZE)
 RHINO_PEN_IMG = pygame.image.load(os.path.join("Assets", "rhinos.png"))
 RHINO_PEN = pygame.transform.scale(RHINO_PEN_IMG, PEN_SIZE)
-#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-#FIX MONKEY
-MONKEY_PEN_IMG = pygame.image.load(os.path.join("Assets", "chickens.png"))
+MONKEY_PEN_IMG = pygame.image.load(os.path.join("Assets", "monkeys.png"))
 MONKEY_PEN = pygame.transform.scale(MONKEY_PEN_IMG, PEN_SIZE)
 PENGUIN_PEN_IMG = pygame.image.load(os.path.join("Assets", "penguins.png"))
 PENGUIN_PEN = pygame.transform.scale(PENGUIN_PEN_IMG, PEN_SIZE)
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #FIX YEEN-TIGER
 YEEN_PEN_IMG = pygame.image.load(os.path.join("Assets", "chickens.png"))
 YEEN_PEN = pygame.transform.scale(YEEN_PEN_IMG, PEN_SIZE)
@@ -262,6 +261,7 @@ class game:
         self.NEWS = pygame.Rect(HEIGHT + 10, 10, WIDTH - HEIGHT - 20, HEIGHT / 3 - 20)
         self.INVENTORY = pygame.Rect(HEIGHT + 10, HEIGHT / 3 + 10, WIDTH - HEIGHT - 20, HEIGHT / 3 - 20)
         self.SHOP = pygame.Rect(HEIGHT + 10, HEIGHT / 3 * 2 + 10, WIDTH - HEIGHT - 20, HEIGHT / 3 - 20)
+
         #animal pens
         '''''''''
         self.PEN_SIZE = (HEIGHT - 60, HEIGHT / 2 - 60)
@@ -329,6 +329,9 @@ class game:
         ]
         self.current_animal = self.all_animals[self.current_animal_index]
 
+
+
+
         #animal sprites
         self.ANIMAL_SIZE = (100, 100)
         self.CHICKEN_IMG = [
@@ -371,6 +374,10 @@ class game:
             pygame.transform.scale(SHEEP_IMG[0], ANIMAL_SIZE),
             pygame.transform.scale(SHEEP_IMG[1], ANIMAL_SIZE)
         ]
+
+
+
+
     def draw_window(self):
         #WIN.fill(GREEN)
 
@@ -383,6 +390,13 @@ class game:
         WIN.blit(self.current_animal.pen_sprite, (ANIMALS.x + 20, ANIMALS.y + 22.5))
         for rect in self.all_animals[self.current_animal_index].rectangles:
             WIN.blit(rect[1], (rect[0].x, rect[0].y))
+
+
+        self.font = pygame.font.Font("freesansbold.ttf", 32)
+        self.text = self.font.render(f"{(self.current_animal.name)}: {str(self.current_animal.num_animals)}", True, "#000000")
+        #self.textRect = self.text.get_rect()
+        WIN.blit(self.text, ((HEIGHT + 20), HEIGHT / 3 + 120))
+        print("Number of", self.current_animal.name, "is", self.current_animal.num_animals)
 
         #pygame.display.update()
     '''''''''
