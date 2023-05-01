@@ -2,7 +2,7 @@ import pygame
 import random
 import makeBackground as B
 #import fromAlex as A
-import alex_prototype_2 as A
+import fromAlex as A
 import fromMary as M
 import Player_and_Shop_Classes as PSC
 import Player_Class as PC
@@ -10,10 +10,11 @@ import Player_Class as PC
 #Initialize Pygame
 pygame.init()
 game = A.Game()
+mgame = M.game()
 
 #Determine FPS
 FPS = 60
-current_animal_index = 0
+#current_animal_index = 0
 
 
 
@@ -25,7 +26,7 @@ def main():
     clock = pygame.time.Clock()
     run = True
 
-    All_animals = M.game().create_animals()
+    #All_animals = mgame.create_animals()
     
     def render():
         #global current_animal_index
@@ -33,10 +34,9 @@ def main():
         A.game.draw_screen()
         A.game.update_game()
         A.game.click_button()
-        current_animal = All_animals[current_animal_index]
-        M.game().draw_window(current_animal)
-        M.game().update(All_animals, current_animal, current_animal_index)
-        #M.game().draw_window(current_animal)
+        mgame.draw_window()
+        #mgame.update(All_animals)
+        #mgame.click()
         pygame.display.update()
     
 
@@ -47,9 +47,17 @@ def main():
         clock.tick(FPS)
 
         #closes game if window is closed
+        #print(len(pygame.event.get()))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT: #later change to a click of an arrow icon on screen
+                    mgame.keyR()
+                if event.key == pygame.K_LEFT: #later change to a click of an arrow icon on screen  
+                    mgame.keyL()              
+            if event.type == pygame.MOUSEBUTTONUP:
+                mgame.click()
 
         #draw the screen every frame
         B.draw.draw_window()
