@@ -28,7 +28,7 @@ INVENTORY = pygame.Rect(HEIGHT + 10, HEIGHT / 3 + 10, WIDTH - HEIGHT - 20, HEIGH
 SHOP = pygame.Rect(HEIGHT + 10, HEIGHT / 3 * 2 + 10, WIDTH - HEIGHT - 20, HEIGHT / 3 - 20)
 #animal pens
 PEN_SIZE = (HEIGHT - 60, HEIGHT / 2 - 60)
-CHICKEN_PEN_IMG = pygame.image.load(os.path.join("Assets", "chickens.png"))
+CHICKEN_PEN_IMG = pygame.image.load(os.path.join("Assets", "sharks.png"))
 CHICKEN_PEN = pygame.transform.scale(CHICKEN_PEN_IMG, PEN_SIZE)
 GOOSE_PEN_IMG = pygame.image.load(os.path.join("Assets", "geese.png"))
 GOOSE_PEN = pygame.transform.scale(GOOSE_PEN_IMG, PEN_SIZE)
@@ -41,12 +41,16 @@ SHEEP_PEN = pygame.transform.scale(SHEEP_PEN_IMG, PEN_SIZE)
 #animal sprites
 ANIMAL_SIZE = (100, 100)
 CHICKEN_IMG = [
-    pygame.image.load(os.path.join("Assets", "chicken0.png")),
-    pygame.image.load(os.path.join("Assets", "chicken1.png"))
+    pygame.image.load(os.path.join("Assets", "shark0.png")),
+    pygame.image.load(os.path.join("Assets", "shark1.png")),
+    pygame.image.load(os.path.join("Assets", "shark2.png")),
+    pygame.image.load(os.path.join("Assets", "shark3.png"))
 ]
 CHICKEN = [
     pygame.transform.scale(CHICKEN_IMG[0], ANIMAL_SIZE),
-    pygame.transform.scale(CHICKEN_IMG[1], ANIMAL_SIZE)
+    pygame.transform.scale(CHICKEN_IMG[1], ANIMAL_SIZE),
+    pygame.transform.scale(CHICKEN_IMG[2], ANIMAL_SIZE),
+    pygame.transform.scale(CHICKEN_IMG[3], ANIMAL_SIZE)
 ]
 GOOSE_IMG = [
     pygame.image.load(os.path.join("Assets", "goose0.png")),
@@ -111,7 +115,11 @@ def create_animals(num_chickens=0, num_geese=0, num_goats=0, num_pigs=0, num_she
 
         def shuffle(self):
             rects = []
-            for i in range(self.num_animals):
+            if self.num_animals < 50:
+                sprites = self.num_animals
+            else:
+                sprites = 50
+            for i in range(sprites):
                 rects.append((pygame.Rect(random.randint(ANIMALS.x + 20, ANIMALS.x + ANIMALS.width - 20 - ANIMAL_SIZE[0]), random.randint(ANIMALS.y + 20, ANIMALS.y + ANIMALS.height - 20 - ANIMAL_SIZE[1]), 50, 50), random.choice(self.animal_sprite)))
             rects = self.sort(rects)
             return rects
@@ -121,7 +129,8 @@ def create_animals(num_chickens=0, num_geese=0, num_goats=0, num_pigs=0, num_she
             self.rectangles = self.shuffle()
         
         def sub_animal(self):
-            self.num_animals -= 1
+            if self.num_animals > 0:
+                self.num_animals -= 1
             self.rectangles = self.shuffle()
 
         def sort(self, rects):
@@ -171,6 +180,9 @@ def main():
                 if event.key == pygame.K_LEFT: #later change to a click of an arrow icon on screen
                     current_animal_index = (current_animal_index - 1) % len(all_animals)
                     #print(current_animal.name)
+                if event.key == pygame.K_SPACE: #for testing purposes
+                    for animal in all_animals:
+                        print(animal.num_animals)
             if event.type == pygame.MOUSEBUTTONUP:
                 if SHOP.collidepoint(SHOP.x, SHOP.y):
                     current_animal.add_animal()
