@@ -1,8 +1,8 @@
 import pygame
 import os
 import random
-import fromAlex as A
-import fromMary as M
+import plants as A
+import farm_animals as M
 
 
 pygame.font.init()

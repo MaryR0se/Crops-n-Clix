@@ -2,8 +2,8 @@ import pygame
 import random
 import makeBackground as B
 #import fromAlex as A
-import fromAlex as A
-import fromMary as M
+import plants as A
+import farm_animals as M
 import Player_and_Shop_Classes as PSC
 import Player_Class as PC
 
