@@ -1,13 +1,10 @@
 import pygame
+from Purchasables import *
 import os
-#will need to import plant and animal classes
 
 pygame.init()
 
 class Shop:
-
-    shop_stock = {"carrot seed": 5, "baby pig": 10}    #KEY = unit name (i.e carrot seed, baby pig, etc)
-                                                       #VALUE = how much it costs, represented as an integer
 
     def __init__(self):
         """
@@ -18,48 +15,42 @@ class Shop:
             None
         """
         self.name = "Shop"
+        self.stock = []
 
-    def get_shop_stock(self, item = ""):                                    #this will only work for accessing item's
-                                                                            #price once we have prices as part of plant/
-                                                                            #animal classes
-        """Returns a dictionary of all items in shop's stock and their 
+    def set_shop_stock(self):
+        """
+        Reads all purchaseable items from PurchasableObjects.txt into the appropriate
+        objects (Plant, Animal, or Building) and adds them to shop.stock list.
+        """
+
+        with open("PurchaseableObjects.txt") as f:
+            finished = False
+
+            while not finished:
+                purchaseable = read_purchaseable(f)
+        
+                if purchaseable == None:
+                    finished = True
+
+                else:
+                    self.stock.append(purchaseable)
+
+
+    def get_shop_stock(self):
+        """
+        Returns a list of all items in shop's stock and their 
         respective prices.
-        Args:
-            item(optional): (str) if specified, indicates the price
-                            of the specified item only"""
-        
-        if item == "":
-            return self.shop_stock
-        
-        else:
-            if item not in self.shop_stock:
-                print(f"{item}is not available for purchase!")
-
-            else:
-                return self.shop_stock[item]
+        """
+        return self.stock
         
 
-    def check_if_unlocked(self):
-        """Returns a boolean value indicating whether or not the 
-        player has unlocked a category or individual item."""
+    def check_if_unlocked(self):            #doesn't work yet
+        """
+        Returns a boolean value indicating whether or not the 
+        player has unlocked a category or individual item.
+        """
         pass
 
-    def check_if_enough_money(self, item, amount = 1):
-        """Returns a boolean value indicating whether or not the
-        player has enough money to purchase the indicated item.
-        Args:
-            item: (str) item whose cost the player's money will be compared to
-            amount(optional): (int) amount of item the player is trying to buy"""
-        
-        cost = 1        #placeholder; this will be specified in plant/animal classes
-        
-        if Player.get_money(self) < (cost * amount):    #again, this will need to be modified once we
-            enough_money = False                        #have the specific prices of everything
-
-        else:
-            enough_money = True
-
-        return enough_money
 
 class Player:
 
@@ -68,12 +59,11 @@ class Player:
         Creates the Player with the specified attributes.
         Args:
             name = (str) the player's name
-            money = (int) how much money the player has on hand
         Returns:
             None
         """
         self.name = name
-        self.inventory = {}     #KEY: item      VALUE: number of that item in inventory
+        self.inventory = []
         self.money = 100        #start off with $100
         self.plants = True      #plants start off as unlocked
         self.animals = False    #animals start off as locked
@@ -86,9 +76,13 @@ class Player:
         """Returns the player's name"""
         return self.name
 
-    def set_name(self):
-        """Will be used to name the character when the game starts"""
-        pass
+    def set_farm_name(self):                        #haven't tested this yet
+        """Allows player to name their farm"""
+
+        farm_name = input("Name your farm:")
+        while farm_name == "":
+            print("Please name your farm.")
+            farm_name = input("Name your farm:")
 
     def are_animals_unlocked(self):
         """Returns a boolean value indicating whether the player has unlocked animals"""
@@ -107,42 +101,82 @@ class Player:
         return self.inventory
     
     def buy(self, item, amount = 1):
-        """Adds the indicated number of units to player's inventory and subtracts
+        """
+        Adds the indicated number of items to player's inventory and subtracts
         the item's cost multiplied by the indicated number from player's money.
         Args:
-            amount: the number of items the player is buying in a single transaction"""
+            amount: (int) the number of items the player is buying in a single transaction
+        """
         
-        cost = 1            #placeholder; this will be specified in plant/animal classes
+        for i in shop.stock:
 
-        if Shop.check_if_enough_money(self, item) == False:       #prevents player from buying more than they can afford
-            print("You don't have enough money!")
+            if i.get_name() == item:
+                cost = int(i.get_cost())
 
-        else:
+                if (cost * amount) <= self.get_money():
 
-            if item not in self.inventory:                  #if player doesn't have any of the item in their inventory,
-                self.inventory[item] = amount               #adds item as a value in inventory dictionary
+                    for j in range(amount):
+                        self.inventory.append(i)
 
-            elif item in self.inventory:
-                self.inventory[item] += amount
+                    self.money -= (cost * amount)
+                    print(f"You purchased {amount} {item}(s).")
 
-            self.money -= (amount * cost)
-            print(f"You purchased {amount} {item}(s).")
+                else:
+                    print("You don't have enough money!")
+
     
     def sell(self, item, amount = 1):
-        """Subtracts the indicated number of units from player's inventory and adds
-        the item's cost multiplied by the indicated number to player's money.
+        """
+        Subtracts the indicated number of items from player's inventory and adds
+        the item's sell price multiplied by the indicated number to player's money.
         Args:
-            amount: the number of items the player is buying in a single transaction"""
-        
-        cost = 1            #placeholder; this will be specified in plant/animal classes
+            amount: (int) the number of items the player is selling in a single transaction
+        """
+    
+        for i in shop.stock:
 
-        if (item not in self.inventory) or (amount > self.inventory[item]):     #prevents player from selling more of the
-            print(f"You don't have {amount} {item} to sell!")                   #item than they have
+            if i.get_name() == item:
+                sell_price = int(i.get_sell_price())
+                number_in_inventory = 0
 
-        elif self.inventory[item] >= amount:
-            self.inventory[item] -= amount
+                for j in self.inventory:
 
-        self.money += (amount * cost)
-        print(f"You sold {amount} {item}(s) and made ${(amount * cost)}.")
+                    if j.get_name() == item:
+                        number_in_inventory += 1
+
+                if number_in_inventory >= amount:
+
+                    for k in range(amount):             #removes desired number of item from inventory
+                        self.inventory.remove(i)
+
+                    self.money += (sell_price * amount)
+                    print(f"You sold {amount} {item}(s) and made ${(amount * sell_price)}.")
+
+                else:
+                    print(f"You don't have {amount} {item}(s) to sell!")
 
 
+shop = Shop()                       #testing stuff
+shop.set_shop_stock()
+print(shop.get_shop_stock())
+
+Spike = Player("Spike")
+
+print(Spike.get_inventory())
+print(Spike.get_money())
+
+Spike.buy("chicken", 10)
+print(Spike.get_inventory())
+print(Spike.get_money())
+
+Spike.buy("tomato", 5)
+print(Spike.get_inventory())
+print(Spike.get_money())
+
+Spike.sell("tomato", 8)
+print(Spike.get_inventory())
+print(Spike.get_money())
+
+Spike.sell("chicken", 6)
+print(Spike.get_inventory())
+print(Spike.get_money())
