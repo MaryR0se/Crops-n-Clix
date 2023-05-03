@@ -23,7 +23,7 @@ pygame.display.set_caption("Farm Game Prototype")
 class Game:
     def __init__(self):
         self.margin = 10
-        self.area_x = 700
+        self.area_x = 780
         self.area_y = 400
         self.side_box_x = 500
         self.side_box_y = (height / 3) - (self.margin+3)
@@ -41,12 +41,12 @@ class Game:
             for j in range(4):
                 k = self.plot_size*i
                 l = self.plot_size*j
-                self.garden_tiles[i].append(pygame.Rect(k+self.margin+10, l+self.margin+10, 80, 80)) #each plot is 80x80 and 20px from the next plot
+                self.garden_tiles[i].append(pygame.Rect(k+self.margin+10+40, l+self.margin+10, 80, 80)) #each plot is 80x80 and 20px from the next plot
                 self.garden_colors[i].append(DARK_BROWN) #all start as just dirt
                 self.garden_timers[i].append(-1) #Timers start at 10
 
-        #list of plants: starting color, then mature color, then low time to mature, then high time
-        self.plants = [[LIGHT_GREEN, DARK_GREEN, 1200, 1500, 0], [LIGHT_BLUE, DARK_BLUE, 3000, 4000, 0], [LIGHT_PURPLE, DARK_PURPLE, 300, 600, 0], [BLACK, WHITE, 700, 800, 0]] 
+        #list of plants: starting color, then mature color, then low time to mature, then high time, then counter, then plant name
+        self.plants = [[LIGHT_GREEN, DARK_GREEN, 1200, 1500, 0, 'Green Plants'], [LIGHT_BLUE, DARK_BLUE, 3000, 4000, 0, 'Blue Plants'], [LIGHT_PURPLE, DARK_PURPLE, 300, 600, 0, 'Pink Plants'], [BLACK, WHITE, 700, 800, 0, 'Weeds']] 
 
         self.available_seeds = [self.plants[0]] #list of all plants you have, starts with just the normal green one
 
@@ -75,20 +75,20 @@ class Game:
                 self.count_planted(self.current_seed)
 
     def draw_screen(self):
-        screen.fill(LIGHT_BROWN)
+        #screen.fill(LIGHT_BROWN)
 
         #create farming area
         farm_area = pygame.Rect(self.margin, self.margin, self.area_x, self.area_y)
-        animal_area = pygame.Rect(self.margin, self.margin*2 + self.area_y, self.area_x, self.area_y)
+        #animal_area = pygame.Rect(self.margin, self.margin*2 + self.area_y, self.area_x, self.area_y)
         pygame.draw.rect(screen, MEDIUM_BROWN, farm_area)
-        pygame.draw.rect(screen, MEDIUM_BROWN, animal_area)
+        #pygame.draw.rect(screen, MEDIUM_BROWN, animal_area)
         
-        side_box_1 = pygame.Rect(self.margin*2 + self.area_x, self.margin, self.side_box_x, self.side_box_y)
-        side_box_2 = pygame.Rect(self.margin*2 + self.area_x, self.margin*2 + self.side_box_y, self.side_box_x, self.side_box_y)
-        side_box_3 = pygame.Rect(self.margin*2 + self.area_x, self.margin*3 + self.side_box_y*2, self.side_box_x, self.side_box_y)
-        pygame.draw.rect(screen, MEDIUM_BROWN, side_box_1)
-        pygame.draw.rect(screen, MEDIUM_BROWN, side_box_2)
-        pygame.draw.rect(screen, MEDIUM_BROWN, side_box_3)
+        #side_box_1 = pygame.Rect(self.margin*2 + self.area_x, self.margin, self.side_box_x, self.side_box_y)
+        #side_box_2 = pygame.Rect(self.margin*2 + self.area_x, self.margin*2 + self.side_box_y, self.side_box_x, self.side_box_y)
+        #side_box_3 = pygame.Rect(self.margin*2 + self.area_x, self.margin*3 + self.side_box_y*2, self.side_box_x, self.side_box_y)
+        #pygame.draw.rect(screen, MEDIUM_BROWN, side_box_1)
+        #pygame.draw.rect(screen, MEDIUM_BROWN, side_box_2)
+        #pygame.draw.rect(screen, MEDIUM_BROWN, side_box_3)
 
         #draw garden
         for i in range(7):
@@ -98,7 +98,10 @@ class Game:
         #draw shop seeds
         self.shop_seeds = []
         for i in range(len(self.available_seeds)): #create seed list
-            self.shop_seeds.append(pygame.Rect(self.area_x + self.margin*3, 40*i + self.margin*2, 20, 20)) #each plot is 80x80 and 20px from the next plot
+            self.shop_seeds.append(pygame.Rect(self.area_x + self.margin*3 + 20, 40*i + self.margin*2, 20, 20)) #each plot is 80x80 and 20px from the next plot
+            self.font = pygame.font.Font("freesansbold.ttf", 20)
+            self.text = self.font.render(f"{(self.available_seeds[i][5])}: {str(self.available_seeds[i][4])}", True, "#000000")
+            screen.blit(self.text, (self.area_x + self.margin*3 + 45, 40*i + self.margin*2))
         for i in range(len(self.shop_seeds)):
             pygame.draw.rect(screen, self.available_seeds[i][0], self.shop_seeds[i])
     
