@@ -32,20 +32,7 @@ INVENTORY = pygame.Rect(HEIGHT + 10, HEIGHT / 3 + 20, WIDTH - HEIGHT, HEIGHT / 3
 SHOP = pygame.Rect(HEIGHT + 10, HEIGHT / 3 * 2 + 30, WIDTH - HEIGHT, HEIGHT / 3 - 15)
 #animal pens
 PEN_SIZE = (HEIGHT - 60, HEIGHT / 2 - 60)
-CHICKEN_PEN_IMG = pygame.image.load(os.path.join("Assets", "chickens.png"))
-CHICKEN_PEN = pygame.transform.scale(CHICKEN_PEN_IMG, PEN_SIZE)
-GOAT_PEN_IMG = pygame.image.load(os.path.join("Assets", "goats.png"))
-GOAT_PEN = pygame.transform.scale(GOAT_PEN_IMG, PEN_SIZE)
-PIG_PEN_IMG = pygame.image.load(os.path.join("Assets", "pigs.png"))
-PIG_PEN = pygame.transform.scale(PIG_PEN_IMG, PEN_SIZE)
-#animal sprites
-ANIMAL_SIZE = (50, 50)
-CHICKEN_IMG = pygame.image.load(os.path.join("Assets", "chicken.png"))
-CHICKEN = pygame.transform.scale(CHICKEN_IMG, ANIMAL_SIZE)
-GOAT_IMG = pygame.image.load(os.path.join("Assets", "goat.png"))
-GOAT = pygame.transform.scale(GOAT_IMG, ANIMAL_SIZE)
-PIG_IMG = pygame.image.load(os.path.join("Assets", "pig.png"))
-PIG = pygame.transform.scale(PIG_IMG, ANIMAL_SIZE)
+
 
 
 WHITE = (255, 255, 255)

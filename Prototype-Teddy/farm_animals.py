@@ -50,23 +50,34 @@ MONKEY_PEN_IMG = pygame.image.load(os.path.join("Assets", "monkeys.png"))
 MONKEY_PEN = pygame.transform.scale(MONKEY_PEN_IMG, PEN_SIZE)
 PENGUIN_PEN_IMG = pygame.image.load(os.path.join("Assets", "penguins.png"))
 PENGUIN_PEN = pygame.transform.scale(PENGUIN_PEN_IMG, PEN_SIZE)
-#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #FIX YEEN-TIGER
-YEEN_PEN_IMG = pygame.image.load(os.path.join("Assets", "chickens.png"))
+YEEN_PEN_IMG = pygame.image.load(os.path.join("Assets", "hyenas.png"))
 YEEN_PEN = pygame.transform.scale(YEEN_PEN_IMG, PEN_SIZE)
-CAT_PEN_IMG = pygame.image.load(os.path.join("Assets", "chickens.png"))
+CAT_PEN_IMG = pygame.image.load(os.path.join("Assets", "cats.png"))
 CAT_PEN = pygame.transform.scale(CAT_PEN_IMG, PEN_SIZE)
-TIGER_PEN_IMG = pygame.image.load(os.path.join("Assets", "chickens.png"))
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TIGER_PEN_IMG = pygame.image.load(os.path.join("Assets", "tigers.png"))
 TIGER_PEN = pygame.transform.scale(TIGER_PEN_IMG, PEN_SIZE)
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SHARK_PEN_IMG = pygame.image.load(os.path.join("Assets", "sharks.png"))
 SHARK_PEN = pygame.transform.scale(SHARK_PEN_IMG, PEN_SIZE)
-
-
-
-
-
-
+SAUROPOD_PEN_IMG = pygame.image.load(os.path.join("Assets", "sauropods.png"))
+SAUROPOD_PEN = pygame.transform.scale(SAUROPOD_PEN_IMG, PEN_SIZE)
+JACKALOPE_PEN_IMG = pygame.image.load(os.path.join("Assets", "wyoming.png"))
+JACKALOPE_PEN = pygame.transform.scale(JACKALOPE_PEN_IMG, PEN_SIZE)
+CHUPACABRAS_PEN_IMG = pygame.image.load(os.path.join("Assets", "chupacabras.png"))
+CHUPACABRAS_PEN = pygame.transform.scale(CHUPACABRAS_PEN_IMG, PEN_SIZE)
+STRAWBERRYCOW_PEN_IMG = pygame.image.load(os.path.join("Assets", "strawberry_cows.png"))
+STRAWBERRYCOW_PEN = pygame.transform.scale(STRAWBERRYCOW_PEN_IMG, PEN_SIZE)
+UNICORN_PEN_IMG = pygame.image.load(os.path.join("Assets", "unicorns.png"))
+UNICORN_PEN = pygame.transform.scale(UNICORN_PEN_IMG, PEN_SIZE)
+MOTHMAN_PEN_IMG = pygame.image.load(os.path.join("Assets", "mothmen.png"))
+MOTHMAN_PEN = pygame.transform.scale(MOTHMAN_PEN_IMG, PEN_SIZE)
+GRIFFIN_PEN_IMG = pygame.image.load(os.path.join("Assets", "griffins.png"))
+GRIFFIN_PEN = pygame.transform.scale(GRIFFIN_PEN_IMG, PEN_SIZE)
+SEA_SERPENT_PEN_IMG = pygame.image.load(os.path.join("Assets", "sea_serpents.png"))
+SEA_SERPENT_PEN = pygame.transform.scale(SEA_SERPENT_PEN_IMG, PEN_SIZE)
+#DRAGON_PEN_IMG = pygame.image.load(os.path.join("Assets", "griffins.png"))
 
 #animal sprites
 ANIMAL_SIZE = (100, 100)
@@ -136,6 +147,12 @@ BEAR_IMG = [
 BEARS = [
     pygame.transform.scale(BEAR_IMG[0], ANIMAL_SIZE),
     pygame.transform.scale(BEAR_IMG[1], ANIMAL_SIZE),
+    pygame.transform.scale(BEAR_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(BEAR_IMG[1], ANIMAL_SIZE),
+    pygame.transform.scale(BEAR_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(BEAR_IMG[1], ANIMAL_SIZE),
+    pygame.transform.scale(BEAR_IMG[2], ANIMAL_SIZE),
+    pygame.transform.scale(BEAR_IMG[3], ANIMAL_SIZE),
     pygame.transform.scale(BEAR_IMG[2], ANIMAL_SIZE),
     pygame.transform.scale(BEAR_IMG[3], ANIMAL_SIZE),
     pygame.transform.scale(BEAR_IMG[4], ANIMAL_SIZE),
@@ -176,11 +193,15 @@ YEENS = [
 ]
 CAT_IMG = [
     pygame.image.load(os.path.join("Assets", "cat0.png")),
-    pygame.image.load(os.path.join("Assets", "cat1.png"))
+    pygame.image.load(os.path.join("Assets", "cat1.png")),
+    pygame.image.load(os.path.join("Assets", "cat2.png")),
+    pygame.image.load(os.path.join("Assets", "cat3.png"))
 ]
 CATS = [
     pygame.transform.scale(CAT_IMG[0], ANIMAL_SIZE),
-    pygame.transform.scale(CAT_IMG[0], ANIMAL_SIZE)
+    pygame.transform.scale(CAT_IMG[1], ANIMAL_SIZE),
+    pygame.transform.scale(CAT_IMG[2], ANIMAL_SIZE),
+    pygame.transform.scale(CAT_IMG[3], ANIMAL_SIZE)
 ]
 TIGER_IMG = [
     pygame.image.load(os.path.join("Assets", "tiger0.png")),
@@ -202,7 +223,88 @@ SHARKS = [
     pygame.transform.scale(SHARK_IMG[2], ANIMAL_SIZE),
     pygame.transform.scale(SHARK_IMG[3], ANIMAL_SIZE)
 ]
-
+SAUROPOD_IMG = [
+    pygame.image.load(os.path.join("Assets", "sauropod0.png")),
+    pygame.image.load(os.path.join("Assets", "sauropod1.png"))
+]
+SAUROPODS = [
+    pygame.transform.scale(SAUROPOD_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(SAUROPOD_IMG[1], ANIMAL_SIZE)
+]
+JACKALOPE_IMG =[
+    pygame.image.load(os.path.join("Assets", "jackalope0.png")),
+    pygame.image.load(os.path.join("Assets", "jackalope1.png"))
+]
+JACKALOPES = [
+    pygame.transform.scale(JACKALOPE_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(JACKALOPE_IMG[1], ANIMAL_SIZE)
+]
+CHUPACABRA_IMG = [
+    pygame.image.load(os.path.join("Assets", "el_chupacabra0.png")),
+    pygame.image.load(os.path.join("Assets", "el_chupacabra1.png"))
+]
+CHUPACABRAS = [
+    pygame.transform.scale(CHUPACABRA_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(CHUPACABRA_IMG[1], ANIMAL_SIZE)
+]
+STRAWBERRYCOW_IMG = [
+    pygame.image.load(os.path.join("Assets", "strawberry_cow0.png")),
+    pygame.image.load(os.path.join("Assets", "strawberry_cow1.png"))
+]
+STRAWBERRYCOWS = [
+    pygame.transform.scale(STRAWBERRYCOW_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(STRAWBERRYCOW_IMG[1], ANIMAL_SIZE)
+]
+UNICORN_IMG = [
+    pygame.image.load(os.path.join("Assets", "unicorn0.png")),
+    pygame.image.load(os.path.join("Assets", "unicorn1.png")),
+    pygame.image.load(os.path.join("Assets", "unicorn2.png")),
+    pygame.image.load(os.path.join("Assets", "unicorn3.png")),
+    pygame.image.load(os.path.join("Assets", "unicorn4.png")),
+    pygame.image.load(os.path.join("Assets", "unicorn5.png"))
+]
+UNICORNS = [
+    pygame.transform.scale(UNICORN_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(UNICORN_IMG[1], ANIMAL_SIZE),
+    pygame.transform.scale(UNICORN_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(UNICORN_IMG[1], ANIMAL_SIZE),
+    pygame.transform.scale(UNICORN_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(UNICORN_IMG[1], ANIMAL_SIZE),
+    pygame.transform.scale(UNICORN_IMG[2], ANIMAL_SIZE),
+    pygame.transform.scale(UNICORN_IMG[3], ANIMAL_SIZE),
+    pygame.transform.scale(UNICORN_IMG[2], ANIMAL_SIZE),
+    pygame.transform.scale(UNICORN_IMG[3], ANIMAL_SIZE),
+    pygame.transform.scale(UNICORN_IMG[4], ANIMAL_SIZE),
+    pygame.transform.scale(UNICORN_IMG[5], ANIMAL_SIZE),
+]
+MOTHMAN_IMG = [
+    pygame.image.load(os.path.join("Assets", "mothman0.png")),
+    pygame.image.load(os.path.join("Assets", "mothman1.png")),
+    pygame.image.load(os.path.join("Assets", "mothman2.png")),
+    pygame.image.load(os.path.join("Assets", "mothman3.png"))
+]
+MOTHMEN = [
+    pygame.transform.scale(MOTHMAN_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(MOTHMAN_IMG[1], ANIMAL_SIZE),
+    pygame.transform.scale(MOTHMAN_IMG[2], ANIMAL_SIZE),
+    pygame.transform.scale(MOTHMAN_IMG[3], ANIMAL_SIZE)
+]
+GRIFFIN_IMG = [
+    pygame.image.load(os.path.join("Assets", "griffin0.png")),
+    pygame.image.load(os.path.join("Assets", "griffin1.png"))
+]
+GRIFFINS = [
+    pygame.transform.scale(GRIFFIN_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(GRIFFIN_IMG[1], ANIMAL_SIZE)
+]
+SEA_SERPENT_IMG = [
+    pygame.image.load(os.path.join("Assets", "Sea_Serpent0.png")),
+    pygame.image.load(os.path.join("Assets", "Sea_Serpent1.png"))
+]
+SEA_SERPENTS = [
+    pygame.transform.scale(SEA_SERPENT_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(SEA_SERPENT_IMG[1], ANIMAL_SIZE)
+]
 
     #def create_animals(self, num_chickens=0, num_geese=0, num_goats=0, num_pigs=0, num_sheep=0):
 #animal class
@@ -292,23 +394,38 @@ class game:
         self.num_cats = 0
         self.num_tigers = 0
         self.num_sharks = 0
+        self.num_sauropods = 0
+        self.num_jackalopes = 0
+        self.num_chupacabras = 0
+        self.num_strawberry_cows = 0
+        self.num_unicorns = 0
+        self.num_mothmen = 0
+        self.num_griffins = 0
+        self.num_sea_serpents = 0
 
-        chickens = Animal("chickens", CHICKEN_PEN, CHICKEN, self.num_chickens)
-        geese = Animal("geese", GOOSE_PEN, GOOSE, self.num_geese)
-        goats = Animal("goats", GOAT_PEN, GOAT, self.num_goats)
-        pigs = Animal("pigs", PIG_PEN, PIG, self.num_pigs)
-        sheep = Animal("sheep", SHEEP_PEN, SHEEP, self.num_sheep)
-        cows = Animal("cows", COWS_PEN, COWS, self.num_cows)
-        alpacas = Animal("lapacas", LLAMA_PEN, ALPACAS, self.num_alpacas)
-        bears = Animal("bears", BEAR_PEN, BEARS, self.num_bears)
-        rhinos = Animal("rhinos", RHINO_PEN, RHINOS, self.num_rhinos)
-        monkeys = Animal("monkeys", MONKEY_PEN, MONKEYS, self.num_monkeys)
-        penguins = (Animal("penguins", PENGUIN_PEN, PENGUINS, self.num_penguins ))
-        yeens = Animal("hyeenas", YEEN_PEN, YEENS, self.num_yeens)
-        cats = Animal("cats", CAT_PEN, CATS, self.num_cats)
-        tigers = Animal("tigers", TIGER_PEN, TIGERS, self.num_tigers)
-        sharks = Animal("sharks", SHARK_PEN, SHARKS, self.num_sharks)
-
+        chickens = Animal("Chickens", CHICKEN_PEN, CHICKEN, self.num_chickens)
+        geese = Animal("Geese", GOOSE_PEN, GOOSE, self.num_geese)
+        goats = Animal("Goats", GOAT_PEN, GOAT, self.num_goats)
+        pigs = Animal("Pigs", PIG_PEN, PIG, self.num_pigs)
+        sheep = Animal("Sheep", SHEEP_PEN, SHEEP, self.num_sheep)
+        cows = Animal("Cows", COWS_PEN, COWS, self.num_cows)
+        alpacas = Animal("Llapacas", LLAMA_PEN, ALPACAS, self.num_alpacas)
+        bears = Animal("Bears", BEAR_PEN, BEARS, self.num_bears)
+        rhinos = Animal("Rhinos", RHINO_PEN, RHINOS, self.num_rhinos)
+        monkeys = Animal("Monkeys", MONKEY_PEN, MONKEYS, self.num_monkeys)
+        penguins = (Animal("Penguins", PENGUIN_PEN, PENGUINS, self.num_penguins ))
+        yeens = Animal("Hyeenas", YEEN_PEN, YEENS, self.num_yeens)
+        cats = Animal("Cats", CAT_PEN, CATS, self.num_cats)
+        tigers = Animal("Tigers", TIGER_PEN, TIGERS, self.num_tigers)
+        sharks = Animal("Sharks", SHARK_PEN, SHARKS, self.num_sharks)
+        sauropods = Animal("Sauropods", SAUROPOD_PEN, SAUROPODS, self.num_sauropods)
+        jackalopes = Animal("Jackalopes", JACKALOPE_PEN, JACKALOPES, self.num_jackalopes)
+        chupacabras = Animal("Chupacabras", CHUPACABRAS_PEN, CHUPACABRAS, self.num_chupacabras)
+        strawberry_cows = Animal("Strawberry Cows", STRAWBERRYCOW_PEN, STRAWBERRYCOWS, self.num_strawberry_cows)
+        unicorns = Animal("Unicorns", UNICORN_PEN, UNICORNS, self.num_unicorns)
+        mothmen = Animal("Mothmen", MOTHMAN_PEN, MOTHMEN, self.num_mothmen)
+        griffins = Animal("Griffins", GRIFFIN_PEN, GRIFFINS, self.num_griffins)
+        sea_serpents = Animal("Sea Serpents", SEA_SERPENT_PEN, SEA_SERPENTS, self.num_sea_serpents)
 
         self.all_animals = [
             chickens,
@@ -325,8 +442,17 @@ class game:
             yeens,
             cats,
             tigers,
-            sharks
+            sharks,
+            sauropods,
+            jackalopes,
+            chupacabras,
+            strawberry_cows,
+            unicorns,
+            mothmen,
+            griffins,
+            sea_serpents
         ]
+
         self.current_animal = self.all_animals[self.current_animal_index]
 
 
@@ -395,7 +521,7 @@ class game:
         self.font = pygame.font.Font("freesansbold.ttf", 32)
         self.text = self.font.render(f"{(self.current_animal.name)}: {str(self.current_animal.num_animals)}", True, "#000000")
         #self.textRect = self.text.get_rect()
-        WIN.blit(self.text, ((HEIGHT + 20), HEIGHT / 3 + 120))
+        WIN.blit(self.text, ((HEIGHT + 20), HEIGHT / 4))
         #print("Number of", self.current_animal.name, "is", self.current_animal.num_animals)
 
         #pygame.display.update()

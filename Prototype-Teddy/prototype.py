@@ -4,8 +4,8 @@ import makeBackground as B
 #import fromAlex as A
 import plants as A
 import farm_animals as M
-import Player_and_Shop_Classes as PSC
-import Player_Class as PC
+#import Player_and_Shop_Classes as PSC
+#import Player_Class as PC
 
 #Initialize Pygame
 pygame.init()
@@ -35,6 +35,7 @@ def main():
         A.game.update_game()
         A.game.click_button()
         mgame.draw_window()
+        #mgame.unlock()
         #mgame.update(All_animals)
         #mgame.click()
         pygame.display.update()
