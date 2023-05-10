@@ -1,2 +1,2 @@
-# Farm-Game
+# Crops n Clixx
 Farm game :)
