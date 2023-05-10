@@ -55,10 +55,8 @@ YEEN_PEN_IMG = pygame.image.load(os.path.join("Assets", "hyenas.png"))
 YEEN_PEN = pygame.transform.scale(YEEN_PEN_IMG, PEN_SIZE)
 CAT_PEN_IMG = pygame.image.load(os.path.join("Assets", "cats.png"))
 CAT_PEN = pygame.transform.scale(CAT_PEN_IMG, PEN_SIZE)
-#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TIGER_PEN_IMG = pygame.image.load(os.path.join("Assets", "tigers.png"))
 TIGER_PEN = pygame.transform.scale(TIGER_PEN_IMG, PEN_SIZE)
-#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SHARK_PEN_IMG = pygame.image.load(os.path.join("Assets", "sharks.png"))
 SHARK_PEN = pygame.transform.scale(SHARK_PEN_IMG, PEN_SIZE)
 SAUROPOD_PEN_IMG = pygame.image.load(os.path.join("Assets", "sauropods.png"))
@@ -77,7 +75,8 @@ GRIFFIN_PEN_IMG = pygame.image.load(os.path.join("Assets", "griffins.png"))
 GRIFFIN_PEN = pygame.transform.scale(GRIFFIN_PEN_IMG, PEN_SIZE)
 SEA_SERPENT_PEN_IMG = pygame.image.load(os.path.join("Assets", "sea_serpents.png"))
 SEA_SERPENT_PEN = pygame.transform.scale(SEA_SERPENT_PEN_IMG, PEN_SIZE)
-#DRAGON_PEN_IMG = pygame.image.load(os.path.join("Assets", "griffins.png"))
+DRAGON_PEN_IMG = pygame.image.load(os.path.join("Assets", "dragons.png"))
+DRAGON_PEN = pygame.transform.scale(DRAGON_PEN_IMG, PEN_SIZE)
 
 #animal sprites
 ANIMAL_SIZE = (100, 100)
@@ -305,6 +304,18 @@ SEA_SERPENTS = [
     pygame.transform.scale(SEA_SERPENT_IMG[0], ANIMAL_SIZE),
     pygame.transform.scale(SEA_SERPENT_IMG[1], ANIMAL_SIZE)
 ]
+DRAGON_IMG = [
+    pygame.image.load(os.path.join("Assets", "dragon0.png")),
+    pygame.image.load(os.path.join("Assets", "dragon1.png")),
+    pygame.image.load(os.path.join("Assets", "dragon2.png")),
+    pygame.image.load(os.path.join("Assets", "dragon3.png"))
+]
+DRAGONS = [
+    pygame.transform.scale(DRAGON_IMG[0], ANIMAL_SIZE),
+    pygame.transform.scale(DRAGON_IMG[1], ANIMAL_SIZE),
+    pygame.transform.scale(DRAGON_IMG[2], ANIMAL_SIZE),
+    pygame.transform.scale(DRAGON_IMG[3], ANIMAL_SIZE)
+]
 
     #def create_animals(self, num_chickens=0, num_geese=0, num_goats=0, num_pigs=0, num_sheep=0):
 #animal class
@@ -402,6 +413,7 @@ class game:
         self.num_mothmen = 0
         self.num_griffins = 0
         self.num_sea_serpents = 0
+        self.num_dragons = 0
 
         chickens = Animal("Chickens", CHICKEN_PEN, CHICKEN, self.num_chickens)
         geese = Animal("Geese", GOOSE_PEN, GOOSE, self.num_geese)
@@ -426,6 +438,7 @@ class game:
         mothmen = Animal("Mothmen", MOTHMAN_PEN, MOTHMEN, self.num_mothmen)
         griffins = Animal("Griffins", GRIFFIN_PEN, GRIFFINS, self.num_griffins)
         sea_serpents = Animal("Sea Serpents", SEA_SERPENT_PEN, SEA_SERPENTS, self.num_sea_serpents)
+        dragons = Animal("Dragons", DRAGON_PEN, DRAGONS, self.num_dragons)
 
         self.all_animals = [
             chickens,
@@ -450,7 +463,8 @@ class game:
             unicorns,
             mothmen,
             griffins,
-            sea_serpents
+            sea_serpents,
+            dragons
         ]
 
         self.current_animal = self.all_animals[self.current_animal_index]
