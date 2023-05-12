@@ -3,8 +3,8 @@ from Purchasables import *
 from Player_and_Shop_Classes import *
 
 #WINDOW DIMENSIONS
-WIDTH = 1050
-HEIGHT = 700
+WIDTH = 1200
+HEIGHT = 800
 #NEWS = pygame.Rect((HEIGHT + 10), 30, (WIDTH - HEIGHT- 30), (HEIGHT / 3 - 15))
 INVENTORY = pygame.Rect((HEIGHT + 10), (HEIGHT / 3 + 30), (WIDTH - HEIGHT - 30), (HEIGHT / 3 - 15))
 SHOP = pygame.Rect((HEIGHT + 10), (HEIGHT / 3 * 2 + 30), (WIDTH - HEIGHT - 30), (HEIGHT / 3 - 15))
